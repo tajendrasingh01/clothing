@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clothing Brand</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="grid-container">
+   
+<!-- Container for Card and Color Buttons -->
+<div class="card-container">
+  <!-- Large Card (Shop Now) -->
+  <div class="card large-card">
+    <img id="card-image" src="C:/Users/SECL HQ 795/Downloads/WEB/t9.jpg" alt="Fashion Model" />
+    <div class="overlay">
+      <span>Shop Now</span>
+    </div>
+    <!-- Color Buttons -->
+    <div class="color-buttons">
+      <button class="color-btn" data-image="C:/Users/SECL HQ 795/Downloads/WEB/t9.jpg" style="background-color: rgb(122, 58, 58);"></button>
+      <button class="color-btn" data-image="C:/Users/SECL HQ 795/Downloads/WEB/t6.jpg" style="background-color: rgb(40, 40, 78);"></button>
+      <button class="color-btn" data-image="C:/Users/SECL HQ 795/Downloads/WEB/t7.jpg" style="background-color: rgb(25, 54, 25);"></button>
+    </div>
+  </div>
+</div>
+
+
+    
+   
+   <!-- Category Card -->
+   <div class="category-card">
+    <div class="categories">
+        <div class="category" data-image="C:\Users\SECL HQ 795\Downloads\WEB\t2.jpg">Dresses</div>
+        <div class="category" data-image="C:\Users\SECL HQ 795\Downloads\WEB\t3.jpg">Scarves</div>
+        <div class="category" data-image="C:\Users\SECL HQ 795\Downloads\WEB\t5.jpg">Sunglasses</div>
+        <div class="category active" data-image="C:\Users\SECL HQ 795\Downloads\WEB\T8.jpg">Jacket</div>
+        <div class="category" data-image="C:\Users\SECL HQ 795\Downloads\WEB\t7.jpg">Sustainable Fashion</div>
+    </div>
+    <div class="image-container">
+        <div class="image-flipper">
+            <div class="image-front">
+                <img src="C:\Users\SECL HQ 795\Downloads\WEB\t6.jpg" alt="Jacket">
+            </div>
+            <div class="image-back">
+                <img src="" alt="Category Image">
+            </div>
+        </div>
+    </div>
+</div>
+ 
+   
+  
+  <!-- Carousel Card -->
+<div class="card carousel">
+  <div class="carousel-images" id="carousel-images">
+    <img src="C:\Users\SECL HQ 795\Downloads\WEB\t3.jpg" alt="Sunglasses" class="carousel-img" />
+    <img src="C:\Users\SECL HQ 795\Downloads\WEB\t4.jpg" alt="Sunglasses" class="carousel-img" />
+    <img src="C:\Users\SECL HQ 795\Downloads\WEB\t5.jpg" alt="Sunglasses" class="carousel-img" />
+  </div>
+</div>
+
+    <!-- Key Product Card (Keyboard Jacket) -->
+    <div class="card key-product">
+      <h2>Keyboard Jacket</h2>
+      <img src="C:\Users\SECL HQ 795\Downloads\WEB\t2.jpg" alt="Keyboard Jacket" />
+      <div class="size-selection">
+        <span>S</span>
+        <span>M</span>
+        <span>L</span>
+        <span>XL</span>
+      </div>
+      <a href="#" class="try-now-btn">Try Now</a>
+    </div>
+
+    
+  
+
+   <!-- Men's Wear Section -->
+<div class="mens-wear">
+    <h2>Men's Wear</h2>
+    <div class="toggle-buttons">
+      <button id="tshirt-btn" class="toggle-btn active">TShirt</button>
+      <button id="polos-btn" class="toggle-btn">Polos</button>
+    </div>
+    <div class="online-store">
+      <span>Online Store</span>
+      <span class="arrow">&#10140;</span>
+    </div>
+  </div>
+  
+  
+
+    <!-- Vertical Card -->
+<div class="card vertical-card">
+    <img src="C:\Users\SECL HQ 795\Downloads\WEB\T8.jpg" alt="Winter Essential" />
+  </div>
+  
+    <!-- Essentials Section -->
+    <div class="card essentials">
+      <h2>Sunny Winter Essentials</h2>
+      <p>
+        Fashion from chic dresses and stylish tops to versatile bottoms and cozy
+        outerwear. We have everything you need for the season.
+      </p>
+    </div>
+
+    <!-- Sneakers Card -->
+    <div class="card sneakers">
+      <img src="C:\Users\SECL HQ 795\Downloads\WEB\t7.jpg" alt="Winter Sneakers" />
+      <span>Buy Now</span>
+    </div>
+
+  </div>
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.carousel-img');
+    const totalSlides = slides.length;
+  
+    function showSlide(index) {
+      // Hide all slides
+      slides.forEach((slide) => slide.classList.remove('active'));
+  
+      // Show the current slide
+      slides[index].classList.add('active');
+    }
+  
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      showSlide(currentSlide);
+    }
+  
+    // Initialize the carousel
+    showSlide(currentSlide);
+  
+    // Auto slide every 3 seconds
+    setInterval(nextSlide, 3000);
+  </script>
+   <script>
+    const categories = document.querySelectorAll('.category');
+    const imageFlipper = document.querySelector('.image-flipper');
+    const frontImage = document.querySelector('.image-front img');
+    const backImage = document.querySelector('.image-back img');
+
+    categories.forEach(category => {
+        category.addEventListener('click', () => {
+            // Remove active class from all categories
+            categories.forEach(c => c.classList.remove('active'));
+            
+            // Add active class to clicked category
+            category.classList.add('active');
+
+            // Set the new image on the back face
+            backImage.src = category.dataset.image;
+            backImage.alt = category.textContent;
+
+            // Flip the image
+            imageFlipper.classList.add('flipped');
+
+            // After the flip animation, update the front image and flip back
+            setTimeout(() => {
+                frontImage.src = category.dataset.image;
+                frontImage.alt = category.textContent;
+                imageFlipper.classList.remove('flipped');
+            }, 400);
+        });
+    });
+</script>
+<script>// JavaScript to handle image change on button click
+  const buttons = document.querySelectorAll('.color-btn');
+  const cardImage = document.getElementById('card-image');
+  
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      const newImage = button.getAttribute('data-image');
+      cardImage.src = newImage;
+    });
+  });
+  
+  </script>
+<!-- JavaScript for Smooth Image Change -->
+
+  
+</body>
+</html>
